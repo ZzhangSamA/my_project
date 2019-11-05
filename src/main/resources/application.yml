@@ -1,0 +1,47 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: my_project
+    datasource:
+        url: jdbc:mysql://localhost:3306/yanzhang?useSSL=false&serverTimezone=UTC
+        username: root
+        password: root
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        druid:
+            initial-size: 5
+            max-active: 8
+            min-idle: 2
+            validation-query: 'select 1'
+            test-on-borrow: false
+            test-on-return: false
+            test-while-idle: true
+            # psCache, 缓存preparedStatement, 对支持游标的数据库性能有巨大的提升，oracle开启，mysql建议关闭
+            pool-prepared-statements: false
+            # psCache开启的时候有效
+            max-open-prepared-statements: 100
+            # 一个连接在被驱逐出连接池的时候，在连接池中最小的空闲时间，单位为毫秒
+            min-evictable-idle-time-millis: 30000
+            # 距离上次释放空闲连接的时间间隔
+            time-between-eviction-runs-millis: 30000
+
+    resources:
+        static-locations: classpath:/static/
+    thymeleaf:
+        enabled: true  #是否使用thymeleaf模板引擎
+        cache: false   #是否缓存，在开发阶段设置false, 生产上为true
+        encoding: utf-8
+        mode: html
+        prefix: classpath:/templates/  #模板存放的位置
+        suffix: .html  #后缀
+
+pagehelper:
+    # 分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页
+    reasonable: true
+    # 支持通过 Mapper 接口参数来传递分页参数
+    support-methods-arguments: true
+    helper-dialect: mysql
+mybatis:
+    mapper-locations: classpath:/mybatis/**/*.xml
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
