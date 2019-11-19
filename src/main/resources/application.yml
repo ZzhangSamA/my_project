@@ -1,47 +1,47 @@
 server:
-    port: 8080
+  port: 8080
 spring:
-    application:
-        name: my_project
-    datasource:
-        url: jdbc:mysql://localhost:3306/yanzhang?useSSL=false&serverTimezone=UTC
-        username: root
-        password: root
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        druid:
-            initial-size: 5
-            max-active: 8
-            min-idle: 2
-            validation-query: 'select 1'
-            test-on-borrow: false
-            test-on-return: false
-            test-while-idle: true
-            # psCache, »º´æpreparedStatement, ¶ÔÖ§³ÖÓÎ±êµÄÊı¾İ¿âĞÔÄÜÓĞ¾Ş´óµÄÌáÉı£¬oracle¿ªÆô£¬mysql½¨Òé¹Ø±Õ
-            pool-prepared-statements: false
-            # psCache¿ªÆôµÄÊ±ºòÓĞĞ§
-            max-open-prepared-statements: 100
-            # Ò»¸öÁ¬½ÓÔÚ±»ÇıÖğ³öÁ¬½Ó³ØµÄÊ±ºò£¬ÔÚÁ¬½Ó³ØÖĞ×îĞ¡µÄ¿ÕÏĞÊ±¼ä£¬µ¥Î»ÎªºÁÃë
-            min-evictable-idle-time-millis: 30000
-            # ¾àÀëÉÏ´ÎÊÍ·Å¿ÕÏĞÁ¬½ÓµÄÊ±¼ä¼ä¸ô
-            time-between-eviction-runs-millis: 30000
+  application:
+    name: my_project
+  datasource:
+    url: jdbc:mysql://localhost:3306/yanzhang?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 5
+      max-active: 8
+      min-idle: 2
+      validation-query: 'select 1'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      # psCache, ç¼“å­˜preparedStatement, å¯¹æ”¯æŒæ¸¸æ ‡çš„æ•°æ®åº“æ€§èƒ½æœ‰å·¨å¤§çš„æå‡ï¼Œoracleå¼€å¯ï¼Œmysqlå»ºè®®å…³é—­
+      pool-prepared-statements: false
+      # psCacheå¼€å¯çš„æ—¶å€™æœ‰æ•ˆ
+      max-open-prepared-statements: 100
+      # ä¸€ä¸ªè¿æ¥åœ¨è¢«é©±é€å‡ºè¿æ¥æ± çš„æ—¶å€™ï¼Œåœ¨è¿æ¥æ± ä¸­æœ€å°çš„ç©ºé—²æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’
+      min-evictable-idle-time-millis: 30000
+      # è·ç¦»ä¸Šæ¬¡é‡Šæ”¾ç©ºé—²è¿æ¥çš„æ—¶é—´é—´éš”
+      time-between-eviction-runs-millis: 30000
 
-    resources:
-        static-locations: classpath:/static/
-    thymeleaf:
-        enabled: true  #ÊÇ·ñÊ¹ÓÃthymeleafÄ£°åÒıÇæ
-        cache: false   #ÊÇ·ñ»º´æ£¬ÔÚ¿ª·¢½×¶ÎÉèÖÃfalse, Éú²úÉÏÎªtrue
-        encoding: utf-8
-        mode: html
-        prefix: classpath:/templates/  #Ä£°å´æ·ÅµÄÎ»ÖÃ
-        suffix: .html  #ºó×º
+  resources:
+    static-locations: classpath:/static/
+  thymeleaf:
+    enabled: true  #æ˜¯å¦ä½¿ç”¨thymeleafæ¨¡æ¿å¼•æ“
+    cache: false   #æ˜¯å¦ç¼“å­˜ï¼Œåœ¨å¼€å‘é˜¶æ®µè®¾ç½®false, ç”Ÿäº§ä¸Šä¸ºtrue
+    encoding: utf-8
+    mode: html
+    prefix: classpath:/templates/  #æ¨¡æ¿å­˜æ”¾çš„ä½ç½®
+    suffix: .html  #åç¼€
 
 pagehelper:
-    # ·ÖÒ³ºÏÀí»¯²ÎÊı£¬Ä¬ÈÏÖµÎªfalse¡£µ±¸Ã²ÎÊıÉèÖÃÎª true Ê±£¬pageNum<=0 Ê±»á²éÑ¯µÚÒ»Ò³£¬ pageNum>pages£¨³¬¹ı×ÜÊıÊ±£©£¬»á²éÑ¯×îºóÒ»Ò³
-    reasonable: true
-    # Ö§³ÖÍ¨¹ı Mapper ½Ó¿Ú²ÎÊıÀ´´«µİ·ÖÒ³²ÎÊı
-    support-methods-arguments: true
-    helper-dialect: mysql
+  # åˆ†é¡µåˆç†åŒ–å‚æ•°ï¼Œé»˜è®¤å€¼ä¸ºfalseã€‚å½“è¯¥å‚æ•°è®¾ç½®ä¸º true æ—¶ï¼ŒpageNum<=0 æ—¶ä¼šæŸ¥è¯¢ç¬¬ä¸€é¡µï¼Œ pageNum>pagesï¼ˆè¶…è¿‡æ€»æ•°æ—¶ï¼‰ï¼Œä¼šæŸ¥è¯¢æœ€åä¸€é¡µ
+  reasonable: true
+  # æ”¯æŒé€šè¿‡ Mapper æ¥å£å‚æ•°æ¥ä¼ é€’åˆ†é¡µå‚æ•°
+  support-methods-arguments: true
+  helper-dialect: mysql
 mybatis:
-    mapper-locations: classpath:/mybatis/**/*.xml
-    configuration:
-        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:/mybatis/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
