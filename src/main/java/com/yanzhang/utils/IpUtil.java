@@ -92,8 +92,7 @@ public class IpUtil {
      * @throws SocketException
      * @throws UnknownHostException
      */
-    public static String getLocalMac(String ipAddress) throws SocketException,
-            UnknownHostException {
+    static String getLocalMac(String ipAddress) throws SocketException, UnknownHostException {
         // TODO Auto-generated method stub
         String str = "";
         String macAddress = "";
@@ -102,8 +101,7 @@ public class IpUtil {
         if (LOOPBACK_ADDRESS.equals(ipAddress)) {
             InetAddress inetAddress = InetAddress.getLocalHost();
             // 貌似此方法需要JDK1.6。
-            byte[] mac = NetworkInterface.getByInetAddress(inetAddress)
-                    .getHardwareAddress();
+            byte[] mac = NetworkInterface.getByInetAddress(inetAddress).getHardwareAddress();
             // 下面代码是把mac地址拼装成String
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < mac.length; i++) {
@@ -120,20 +118,13 @@ public class IpUtil {
         } else {
             // 获取非本地IP的MAC地址
             try {
-                System.out.println(ipAddress);
-                Process p = Runtime.getRuntime()
-                        .exec("nbtstat -A " + ipAddress);
-                System.out.println("===process==" + p);
+                Process p = Runtime.getRuntime().exec("nbtstat -A " + ipAddress);
                 InputStreamReader ir = new InputStreamReader(p.getInputStream());
-
                 BufferedReader br = new BufferedReader(ir);
-
                 while ((str = br.readLine()) != null) {
                     if (str.indexOf("MAC") > 1) {
-                        macAddress = str.substring(str.indexOf("MAC") + 9,
-                                str.length());
+                        macAddress = str.substring(str.indexOf("MAC") + 9, str.length());
                         macAddress = macAddress.trim();
-                        System.out.println("macAddress:" + macAddress);
                         break;
                     }
                 }
