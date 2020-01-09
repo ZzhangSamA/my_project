@@ -16,6 +16,7 @@ public class AddSaltCredentialsMatcher extends CodecSupport implements Credentia
      * token 是用户在登录的时候，构建UsernameAndPasswordToken 其中封装了 name和password
      * info 是CustomerRealm中 doGetAuthenticationInfo 中方法的返回值。
      */
+    @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
 
         Object tokenCredentials = token.getCredentials();
