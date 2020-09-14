@@ -1,6 +1,5 @@
 package com.yanzhang.utils;
 
-import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.util.DigestUtils;
 
 /**

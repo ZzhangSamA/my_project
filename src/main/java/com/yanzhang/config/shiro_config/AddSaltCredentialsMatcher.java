@@ -8,8 +8,6 @@ import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.util.ByteSource;
 
-import java.security.MessageDigest;
-
 public class AddSaltCredentialsMatcher extends CodecSupport implements CredentialsMatcher {
 
     /**
