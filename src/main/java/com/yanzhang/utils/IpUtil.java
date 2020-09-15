@@ -14,8 +14,8 @@ public class IpUtil {
     /**
      * 获取用户请求的IP地址
      *
-     * @param request
-     * @return
+     * @param request 通过请求获取ip地址
+     * @return ip地址
      */
     public static String getIpAddr(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
@@ -40,7 +40,7 @@ public class IpUtil {
     /**
      * 通过IP获取地址(需要联网，调用淘宝的IP库)
      *
-     * @param ip
+     * @param ip ip地址
      * @return
      */
     public static String getIpInfo(String ip) {
@@ -58,7 +58,7 @@ public class IpUtil {
 
             InputStream in = httpCon.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-            StringBuffer temp = new StringBuffer();
+            StringBuilder temp = new StringBuilder();
             String line = bufferedReader.readLine();
             while (line != null) {
                 temp.append(line).append("\r\n");
@@ -73,11 +73,7 @@ public class IpUtil {
                 info += data.getString("city") + " ";
                 info += data.getString("isp");
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return info;
@@ -86,11 +82,8 @@ public class IpUtil {
     /**
      * 根据IP地址获取mac地址
      *
-     * @param ipAddress
-     *            127.0.0.1
-     * @return
-     * @throws SocketException
-     * @throws UnknownHostException
+     * @param ipAddress ip地址，127.0.0.1为本机
+     * @return mac地址
      */
     static String getLocalMac(String ipAddress) throws SocketException, UnknownHostException {
         // TODO Auto-generated method stub
@@ -131,7 +124,8 @@ public class IpUtil {
                 p.destroy();
                 br.close();
                 ir.close();
-            } catch (IOException ex) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return macAddress;
         }
